@@ -4,10 +4,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private int speed;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer playerSprite;
 
     private PlayerControls _playerControls;
     private Rigidbody _rb;
     private Vector3 _movement;
+    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
 
     private void Awake()
     {
@@ -27,6 +30,12 @@ public class PlayerController : MonoBehaviour
         _movement.x = input.x;
         _movement.z = input.y;
         _movement.Normalize();
+        
+        animator.SetBool(IsWalking, _movement != Vector3.zero);
+        if (_movement.x != 0)
+        {
+            playerSprite.flipX = _movement.x < 0;
+        }
     }
 
     private void FixedUpdate()

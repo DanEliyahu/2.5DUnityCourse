@@ -973,6 +973,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  animator: {fileID: 793591717}
+  playerSprite: {fileID: 793591716}
 --- !u!54 &2127043606
 Rigidbody:
   m_ObjectHideFlags: 0
