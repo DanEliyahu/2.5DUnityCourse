@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 236361188}
   - component: {fileID: 236361189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrassTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -506,7 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 407664261}
   - component: {fileID: 407664262}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrassTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1000,7 +1000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076847387}
   - component: {fileID: 1076847388}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrassTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,11 +1037,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 1, z: 5}
+  m_Size: {x: 10, y: 1, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1397589588
 GameObject:
@@ -1083,7 +1083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1426126273}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrassTriggers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1211,7 +1211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854700729}
   - component: {fileID: 1854700730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GrassTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1248,7 +1248,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1304,6 +1304,10 @@ MonoBehaviour:
   speed: 3
   animator: {fileID: 793591717}
   playerSprite: {fileID: 793591716}
+  grassLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  stepsInGrass: 0
 --- !u!54 &2127043606
 Rigidbody:
   m_ObjectHideFlags: 0
