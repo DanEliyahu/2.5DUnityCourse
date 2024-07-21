@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
@@ -7,15 +8,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private LayerMask grassLayer;
-    [SerializeField] private int stepsInGrass;
-
+    [SerializeField] private Vector2Int stepsToEncounterRange;
+    
     private PlayerControls _playerControls;
     private Rigidbody _rb;
     private Vector3 _movement;
+    private int _stepsInGrass;
+    private int _stepsToEncounter;
     private bool _movingInGrass;
     private float _stepTimer;
 
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+    private const string BattleScene = "BattleScene";
     private const float TimePerStep = 0.5f;
 
     private void Awake()
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour
         _playerControls = new PlayerControls();
         _rb = GetComponent<Rigidbody>();
         _movement = new Vector3();
+        CalculateStepsToNextEncounter();
     }
 
     private void OnEnable()
@@ -54,9 +59,19 @@ public class PlayerController : MonoBehaviour
             _stepTimer += Time.fixedDeltaTime;
             if (_stepTimer > TimePerStep)
             {
-                stepsInGrass++;
+                _stepsInGrass++;
                 _stepTimer = 0;
+
+                if (_stepsInGrass >= _stepsToEncounter)
+                {
+                    SceneManager.LoadScene(BattleScene);
+                }
             }
         }
+    }
+
+    private void CalculateStepsToNextEncounter()
+    {
+        _stepsToEncounter = Random.Range(stepsToEncounterRange.x, stepsToEncounterRange.y);
     }
 }

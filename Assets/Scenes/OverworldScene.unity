@@ -1307,7 +1307,7 @@ MonoBehaviour:
   grassLayer:
     serializedVersion: 2
     m_Bits: 64
-  stepsInGrass: 0
+  stepsToEncounterRange: {x: 5, y: 10}
 --- !u!54 &2127043606
 Rigidbody:
   m_ObjectHideFlags: 0
