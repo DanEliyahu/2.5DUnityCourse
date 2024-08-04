@@ -16,19 +16,19 @@ public class PartyManager : MonoBehaviour
 
     public void AddMemberToPartyByName(string memberName)
     {
-        foreach (var member in allMembers)
+        foreach (var memberInfo in allMembers)
         {
-            if (!member.memberName.Equals(memberName)) continue;
+            if (!memberInfo.memberName.Equals(memberName)) continue;
             var newPartyMember = new PartyMember
             {
-                MemberName = member.name,
-                Level = member.startingLevel,
-                CurrentHealth = member.baseHealth,
-                MaxHealth = member.baseHealth,
-                Strength = member.baseStr,
-                Initiative = member.baseInitiative,
-                BattlePrefab = member.memberBattlePrefab,
-                OverworldPrefab = member.memberOverworldPrefab
+                MemberName = memberInfo.name,
+                Level = memberInfo.startingLevel,
+                CurrentHealth = memberInfo.baseHealth,
+                MaxHealth = memberInfo.baseHealth,
+                Strength = memberInfo.baseStr,
+                Initiative = memberInfo.baseInitiative,
+                BattlePrefab = memberInfo.memberBattlePrefab,
+                OverworldPrefab = memberInfo.memberOverworldPrefab
             };
 
             _currentParty.Add(newPartyMember);
