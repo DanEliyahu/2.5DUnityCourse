@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2118656307, guid: 1dc3b8428c9046641a46fe80a9792980, type: 3}
+      value: {fileID: -1366332735, guid: 7e35b4eeceaf0c54585e98ab6164f68f, type: 3}
     attribute: m_Sprite
-    path: John_0
+    path: Slime_0
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -35,7 +35,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2739019972
+      path: 4176453995
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -44,7 +44,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2118656307, guid: 1dc3b8428c9046641a46fe80a9792980, type: 3}
+    - {fileID: -1366332735, guid: 7e35b4eeceaf0c54585e98ab6164f68f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
