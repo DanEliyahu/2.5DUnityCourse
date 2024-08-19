@@ -35,6 +35,11 @@ public class PartyManager : MonoBehaviour
             break;
         }
     }
+
+    public List<PartyMember> GetCurrentParty()
+    {
+        return _currentParty;
+    }
 }
 
 [System.Serializable]

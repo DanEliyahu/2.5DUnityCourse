@@ -22,6 +22,11 @@ public class EnemyManager : MonoBehaviour
             _currentEnemies.Add(newEnemy);
         }
     }
+
+    public List<Enemy> GetCurrentEnemies()
+    {
+        return _currentEnemies;
+    }
 }
 
 [System.Serializable]
