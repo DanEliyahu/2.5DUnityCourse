@@ -17,7 +17,6 @@ public class BattleVisuals : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        SetStartingValues(10, 15, 56);
     }
 
     public void SetStartingValues(int currentHealth, int maxHealth, int level)
