@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
-    private PartyManager _partyManager;
-    private EnemyManager _enemyManager;
-
+    [Header("Spawn Points")]
+    [SerializeField] private Transform[] partySpawnPoints;
+    [SerializeField] private Transform[] enemySpawnPoints;
+    
+    [Header("Battlers")]
     [SerializeField] private List<BattleEntity> allBattlers = new List<BattleEntity>();
     [SerializeField] private List<BattleEntity> enemyBattlers = new List<BattleEntity>();
     [SerializeField] private List<BattleEntity> playerBattlers = new List<BattleEntity>();
 
+    private PartyManager _partyManager;
+    private EnemyManager _enemyManager;
+    
     // Start is called before the first frame update
     void Start()
     {
