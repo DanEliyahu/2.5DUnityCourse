@@ -81,7 +81,7 @@ public class BattleSystem : MonoBehaviour
 
     private void ShowBattleMenu()
     {
-        actionText.text = playerBattlers[-_currentPlayer].Name + ActionMessage;
+        actionText.text = playerBattlers[_currentPlayer].Name + ActionMessage;
         battleMenu.SetActive(true);
     }
 
@@ -110,11 +110,38 @@ public class BattleSystem : MonoBehaviour
             }
         }
     }
+
+    public void SelectEnemy(int currentEnemy)
+    {
+        // setting the current members target
+        BattleEntity currentPlayerEntity = playerBattlers[_currentPlayer];
+        currentPlayerEntity.SetTarget(allBattlers.IndexOf(enemyBattlers[currentEnemy]));
+
+        currentPlayerEntity.BattleAction = BattleEntity.BattleActionEnum.Attack;
+        _currentPlayer++;
+
+        if (_currentPlayer >= playerBattlers.Count)
+        {
+            // Start the battle
+        }
+        else
+        {
+            enemySelectionMenu.SetActive(false);
+            ShowBattleMenu();
+        }
+    }
 }
 
 [System.Serializable]
 public class BattleEntity
 {
+    public enum BattleActionEnum
+    {
+        Attack,
+        Run
+    }
+
+    public BattleActionEnum BattleAction;
     public string Name;
     public int CurrHealth;
     public int MaxHealth;
@@ -123,6 +150,7 @@ public class BattleEntity
     public int Level;
     public bool IsPlayer;
     public BattleVisuals BattleVisuals;
+    public int Target;
 
     public void SetEntityValues(string name, int currHealth, int maxHealth, int initiative, int strength, int level,
         bool isPlayer)
@@ -134,5 +162,10 @@ public class BattleEntity
         Strength = strength;
         Level = level;
         IsPlayer = isPlayer;
+    }
+
+    public void SetTarget(int target)
+    {
+        Target = target;
     }
 }
