@@ -14,7 +14,7 @@ public class BattleVisuals : MonoBehaviour
     private static readonly int Die = Animator.StringToHash("Die");
 
 
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
     }

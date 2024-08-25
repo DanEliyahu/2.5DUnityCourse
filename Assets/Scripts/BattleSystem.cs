@@ -17,6 +17,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private GameObject battleMenu;
     [SerializeField] private GameObject enemySelectionMenu;
     [SerializeField] private TextMeshProUGUI actionText;
+    [SerializeField] private GameObject bottomTextPopUp;
+    [SerializeField] private TextMeshProUGUI bottomText;
 
     private PartyManager _partyManager;
     private EnemyManager _enemyManager;
@@ -33,6 +35,7 @@ public class BattleSystem : MonoBehaviour
         CreatePartyEntities();
         CreateEnemyEntities();
         ShowBattleMenu();
+        AttackAction(allBattlers[0], allBattlers[1]);
     }
 
     private void CreatePartyEntities()
@@ -130,6 +133,17 @@ public class BattleSystem : MonoBehaviour
             ShowBattleMenu();
         }
     }
+
+    private void AttackAction(BattleEntity attacker, BattleEntity target)
+    {
+        int damage = attacker.Strength;
+        attacker.BattleVisuals.PlayAttackAnimation();
+        target.CurrHealth -= damage;
+        target.BattleVisuals.PlayHitAnimation();
+        target.UpdateUI();
+
+        bottomText.text = $"{attacker.Name} attacks {target.Name} for {damage} damage";
+    }
 }
 
 [System.Serializable]
@@ -167,5 +181,10 @@ public class BattleEntity
     public void SetTarget(int target)
     {
         Target = target;
+    }
+
+    public void UpdateUI()
+    {
+        BattleVisuals.ChangeHealth(CurrHealth);
     }
 }
