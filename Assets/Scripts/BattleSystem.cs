@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -39,6 +39,7 @@ public class BattleSystem : MonoBehaviour
     private int _currentPlayer;
 
     private const string ActionMessage = "'s Actions:";
+    private const string WinMessage = "Your party won the battle!";
 
     // Start is called before the first frame update
     void Start()
@@ -51,18 +52,19 @@ public class BattleSystem : MonoBehaviour
         ShowBattleMenu();
     }
 
-    private void BattleRoutine()
+    private IEnumerator BattleRoutine()
     {
         enemySelectionMenu.SetActive(false);
         battleState = BattleState.Battle;
         bottomTextPopUp.SetActive(true);
 
-        foreach (var battler in allBattlers)
+        for (int i = 0; i < allBattlers.Count; i++)
         {
+            var battler = allBattlers[i];
             switch (battler.BattleAction)
             {
                 case BattleEntity.BattleActionEnum.Attack:
-                    Debug.Log($"{battler.Name} is attacking {allBattlers[battler.Target].Name}");
+                    yield return AttackRoutine(battler, allBattlers[battler.Target]);
                     break;
                 case BattleEntity.BattleActionEnum.Run:
                     break;
@@ -78,6 +80,33 @@ public class BattleSystem : MonoBehaviour
             _currentPlayer = 0;
             ShowBattleMenu();
         }
+    }
+
+    private IEnumerator AttackRoutine(BattleEntity attacker, BattleEntity target)
+    {
+        // player's turn
+        if (attacker.IsPlayer)
+        {
+            AttackAction(attacker, target);
+            // wait for attack animation to finish
+            while (attacker.BattleVisuals.IsAttacking)
+            {
+                yield return null;
+            }
+
+            if (target.CurrHealth <= 0)
+            {
+                enemyBattlers.Remove(target);
+                allBattlers.Remove(target);
+                if (enemyBattlers.Count == 0)
+                {
+                    battleState = BattleState.Won;
+                    bottomText.text = WinMessage;
+                }
+            }
+        }
+
+        // enemy's turn
     }
 
     private void CreatePartyEntities()
@@ -167,7 +196,7 @@ public class BattleSystem : MonoBehaviour
 
         if (_currentPlayer >= playerBattlers.Count)
         {
-            BattleRoutine();
+            StartCoroutine(BattleRoutine());
         }
         else
         {

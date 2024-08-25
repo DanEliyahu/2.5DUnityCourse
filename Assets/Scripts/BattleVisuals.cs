@@ -7,6 +7,8 @@ public class BattleVisuals : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] private TextMeshProUGUI levelText;
 
+    public bool IsAttacking { get; private set; }
+    
     private Animator _animator;
 
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -39,6 +41,7 @@ public class BattleVisuals : MonoBehaviour
     public void PlayAttackAnimation()
     {
         _animator.SetTrigger(Attack);
+        IsAttacking = true;
     }
 
     public void PlayHitAnimation()
@@ -49,5 +52,10 @@ public class BattleVisuals : MonoBehaviour
     public void PlayDeathAnimation()
     {
         _animator.SetTrigger(Die);
+    }
+
+    public void AttackEndedEvent()
+    {
+        IsAttacking = false;
     }
 }
