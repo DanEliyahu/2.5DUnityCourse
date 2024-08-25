@@ -1,9 +1,23 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class BattleSystem : MonoBehaviour
 {
+    private enum BattleState
+    {
+        Start,
+        Selection,
+        Battle,
+        Won,
+        Lost,
+        Run
+    }
+
+    [Header("Battle State")] [SerializeField]
+    private BattleState battleState;
+
     [Header("Spawn Points")] [SerializeField]
     private Transform[] partySpawnPoints;
 
@@ -35,7 +49,35 @@ public class BattleSystem : MonoBehaviour
         CreatePartyEntities();
         CreateEnemyEntities();
         ShowBattleMenu();
-        AttackAction(allBattlers[0], allBattlers[1]);
+    }
+
+    private void BattleRoutine()
+    {
+        enemySelectionMenu.SetActive(false);
+        battleState = BattleState.Battle;
+        bottomTextPopUp.SetActive(true);
+
+        foreach (var battler in allBattlers)
+        {
+            switch (battler.BattleAction)
+            {
+                case BattleEntity.BattleActionEnum.Attack:
+                    Debug.Log($"{battler.Name} is attacking {allBattlers[battler.Target].Name}");
+                    break;
+                case BattleEntity.BattleActionEnum.Run:
+                    break;
+                default:
+                    Debug.LogError("Error - invalid battle action for " + battler.Name);
+                    break;
+            }
+        }
+
+        if (battleState == BattleState.Battle)
+        {
+            bottomTextPopUp.SetActive(false);
+            _currentPlayer = 0;
+            ShowBattleMenu();
+        }
     }
 
     private void CreatePartyEntities()
@@ -125,7 +167,7 @@ public class BattleSystem : MonoBehaviour
 
         if (_currentPlayer >= playerBattlers.Count)
         {
-            // Start the battle
+            BattleRoutine();
         }
         else
         {

@@ -1263,6 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f6ff1d89af5134abc72e489f517200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleState: 0
   partySpawnPoints:
   - {fileID: 1321649454}
   - {fileID: 1240982097}
@@ -2774,7 +2775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1805790946
 RectTransform:
   m_ObjectHideFlags: 0
